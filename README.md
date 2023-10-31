@@ -1,39 +1,9 @@
-# aPCoA
-# aPCoA: Covariate Adjusted Principal Coordinates Analysis
+![](./s259_uEWX4FYzxHKcwzhcRlzPNAsFSGa48F6sWRFVPZQY_logo_487.jpg)
 
-In fields such as ecology, microbiology, and genomics, non-Euclidean distances are widely applied to describe pairwise dissimilarity between samples. Given these pairwise distances, principal coordinates analysis (PCoA) is commonly used to construct a visualization of the data. However, confounding covariates can make patterns related to the scientific question of interest difficult to observe. We provide 'aPCoA' as an easy-to-use tool to improve data visualization in this context, enabling enhanced presentation of the effects of interest.
-## Main Function
-```
-aPCoA(formula,data,maincov,drawEllipse=TRUE,drawCenter=TRUE)
-```
-+ **formula** A typical formula such as Y~ A, but here Y is a dissimilarity distance. The formula has the same requirements as in adonis function of the vegan package.
-+ **data** A dataset with the rownames the same as the rownames in distance. This dataset should include both the confounding covariate and the primary covariate.
-+ **maincov** the covariate of interest in the dataset, must be a factor
-+ **drawEllipse** Do you want to draw the 95% confidence elipse for each cluster?
-+ **drawCenter** Do you want to show the connection between cluster center (medoid) and cluster members?
 
-## Example
-```
-library(mvabund)
-library(vegan)
-library(aPCoA)
-options(stringsAsFactors = FALSE)
-data("Tasmania")
-data<-data.frame(treatment=Tasmania$treatment,block=Tasmania$block)
-bray<-vegdist(Tasmania$abund, method="bray")
-rownames(data)<-rownames(as.matrix(bray))
-opar<-par(mfrow=c(1,2),
-    mar=c(3.1, 3.1, 3.1, 5.1),
-    mgp=c(2, 0.5, 0),
-    oma=c(0, 0, 0, 4))
-result<-aPCoA(bray~block,data,treatment)
-par(opar)
-```
-## Result
-![](aPCoA.png)
 
-## Authors
+# aPCoA: Easy Covariate Adjusted Principal Coordinates Analysis
 
-**Yushu Shi**, Liangliang Zhang, Kim-Anh Do, Christine Peterson and Robert Jenq
+#### Use app online: __[www.shinyappstore.com/a/aPCoA](https://shinyappstore.com/a/aPCoA)__
 
-Department of Biostatistics and Department of Genomic Medicine, the University of Texas, MD Anderson Cancer Center
+aPCoA app introduces an innovative visualization technique for adjusted Principal Coordinates Analysis (PCoA), enabling the incorporation of covariate adjustments into the PCoA projection. Principal Coordinates Analysis, often referred to as classic or metric multidimensional scaling, provides a means to visualize sample variation and potentially identify clusters by reducing data dimensions. Prior to the development of aPCoA, the challenge with PCoA was that confounding covariates could overshadow the primary covariate's effect. For instance, in a study exploring the microbiome's response to diet, site-related clustering might dominate the visual representation if patients were recruited from multiple locations. While several methods have been proposed to account for covariates in Principal Component Analysis, there were no existing solutions for adjusting covariates in PCoA. Original article: Shi et al. Bioinformatics, Volume 36, Issue 13, July 2020, Pages 4099–4101
